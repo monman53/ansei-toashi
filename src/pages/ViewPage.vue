@@ -47,11 +47,15 @@
             <th class="col-no sortable" @click="setSort('no')">
               No <SortIcon field="no" :sort="sort" :order="order" />
             </th>
-            <th class="col-gender">性別</th>
+            <th class="col-gender sortable" @click="setSort('gender')">
+              性別 <SortIcon field="gender" :sort="sort" :order="order" />
+            </th>
             <th class="col-name sortable" @click="setSort('name_kana')">
               氏名 <SortIcon field="name_kana" :sort="sort" :order="order" />
             </th>
-            <th class="col-pref">都道府県</th>
+            <th class="col-pref sortable" @click="setSort('prefecture')">
+              都道府県 <SortIcon field="prefecture" :sort="sort" :order="order" />
+            </th>
             <th class="col-costume hidden-sm">仮装</th>
             <th class="col-times sortable" @click="setSort('times')">
               回数 <SortIcon field="times" :sort="sort" :order="order" />
