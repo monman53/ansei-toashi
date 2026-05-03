@@ -5,7 +5,7 @@
       <span v-if="currentYearMeta" class="nav-subtitle">{{ currentYearMeta.label }}（{{ currentYearMeta.year }}）</span>
     </div>
     <div class="nav-right">
-      <select v-if="years.length > 1" v-model="selectedYear" class="year-select" @change="onYearChange">
+      <select v-if="years.length > 1" :value="selectedYear" class="year-select" @change="onYearChange">
         <option v-for="y in years" :key="y.year" :value="y.year">{{ y.label }}({{ y.year }})</option>
       </select>
     </div>
@@ -17,22 +17,29 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const years = ref([])
-const selectedYear = ref(null)
+const route = useRoute()
+const router = useRouter()
+
+const selectedYear = computed(() => {
+  const y = Number(route.params.year)
+  return years.value.find(yr => yr.year === y) ? y : (years.value[0]?.year ?? null)
+})
 
 const currentYearMeta = computed(() => years.value.find(y => y.year === selectedYear.value) ?? null)
 
-function onYearChange() {
-  localStorage.setItem('ansei-toashi-selected-year', String(selectedYear.value))
+function onYearChange(e) {
+  router.push('/' + e.target.value)
 }
 
 onMounted(async () => {
-  const res = await fetch('./data/index.json')
+  const res = await fetch(import.meta.env.BASE_URL + 'data/index.json')
   years.value = await res.json()
-  const saved = Number(localStorage.getItem('ansei-toashi-selected-year'))
-  const found = years.value.find(y => y.year === saved)
-  selectedYear.value = found ? found.year : years.value[0]?.year ?? null
+  if (!route.params.year && years.value.length > 0) {
+    router.replace('/' + years.value[0].year)
+  }
 })
 </script>
 

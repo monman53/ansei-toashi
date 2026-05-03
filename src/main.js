@@ -6,6 +6,7 @@ import ViewPage from './pages/ViewPage.vue'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
+    { path: '/:year', component: ViewPage },
     { path: '/', component: ViewPage },
   ]
 })
