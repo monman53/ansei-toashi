@@ -1,11 +1,13 @@
 <template>
   <nav class="nav">
-    <span class="nav-title">安政遠足侍マラソン</span>
+    <div class="nav-title-block">
+      <span class="nav-title">安政遠足侍マラソン</span>
+      <span v-if="currentYearMeta" class="nav-subtitle">{{ currentYearMeta.label }}（{{ currentYearMeta.year }}）</span>
+    </div>
     <div class="nav-right">
       <select v-if="years.length > 1" v-model="selectedYear" class="year-select" @change="onYearChange">
         <option v-for="y in years" :key="y.year" :value="y.year">{{ y.label }}({{ y.year }})</option>
       </select>
-      <span v-else-if="years.length === 1" class="year-label">{{ years[0].label }}({{ years[0].year }})</span>
     </div>
   </nav>
   <main>
@@ -71,12 +73,27 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,.2);
 }
 
+.nav-title-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .nav-title {
   font-weight: bold;
   font-size: 15px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.2;
+}
+
+.nav-subtitle {
+  font-size: 11px;
+  color: rgba(255,255,255,.65);
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .nav-right { display: flex; align-items: center; gap: 8px; }
