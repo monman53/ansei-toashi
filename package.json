@@ -1,0 +1,22 @@
+{
+  "name": "ansei-toashi",
+  "version": "1.0.0",
+  "description": "安政遠足侍マラソン 参加者名簿ウェブアプリ",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^3.5.0",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.4",
+    "vite": "^5.4.21"
+  }
+}
