@@ -250,10 +250,10 @@ watch(() => props.yearMeta, (meta) => {
 }
 .friend-filter-btn.active { background: var(--primary); color: white; }
 
-.stats-row { display: flex; gap: 12px; font-size: 12px; color: var(--muted); }
+.stats-row { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); }
 .friend-count { color: var(--friend-color); font-weight: 500; }
 .loading-inline { font-style: italic; }
-.notice { color: var(--muted); margin-left: auto; }
+.notice { width: 100%; }
 
 .table-loading { opacity: 0.4; pointer-events: none; transition: opacity 0.1s; }
 
