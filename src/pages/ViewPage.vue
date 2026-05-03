@@ -42,7 +42,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th class="col-idx"></th>
+            <th class="col-idx hidden-sm"></th>
             <th class="col-friend"></th>
             <th class="col-no sortable" @click="setSort('no')">
               No <SortIcon field="no" :sort="sort" :order="order" />
@@ -67,7 +67,7 @@
         </thead>
         <tbody>
           <tr v-for="(p, i) in participants" :key="p.no + '-' + p.course" :class="{ 'row-friend': isFriend(p) }">
-            <td class="col-idx muted">{{ i + 1 }}</td>
+            <td class="col-idx muted hidden-sm">{{ i + 1 }}</td>
             <td class="col-friend">
               <button
                 class="friend-btn"
