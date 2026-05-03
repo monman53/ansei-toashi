@@ -54,6 +54,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-size: 14px;
+  overflow-x: hidden;
 }
 
 .nav {

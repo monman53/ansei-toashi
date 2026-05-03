@@ -303,9 +303,9 @@ watch(() => props.yearMeta, (meta) => {
 .col-idx     { width: 20px; text-align: right; font-size: 10px; padding: 0 2px; }
 .col-friend  { width: 40px; padding: 0 4px; text-align: center; }
 .col-no      { width: 44px; }
-.col-name    { min-width: 120px; }
+.col-name    { min-width: 100px; }
 .col-gender  { width: 36px; text-align: center; }
-.col-pref    { min-width: 80px; }
+.col-pref    { min-width: 60px; }
 .col-costume { width: 36px; text-align: center; }
 .col-times   { width: 44px; text-align: right; }
 .col-course  { min-width: 60px; }
