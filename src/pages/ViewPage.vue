@@ -8,16 +8,16 @@
       </div>
       <div class="filter-row">
         <div class="chip-group">
-          <button class="chip" :class="{ active: filterGender === '男性' }" @click="toggleFilter('gender', '男性')">男性</button>
-          <button class="chip" :class="{ active: filterGender === '女性' }" @click="toggleFilter('gender', '女性')">女性</button>
+          <button class="chip" :class="{ active: !filterGender || filterGender === '男性' }" @click="toggleFilter('gender', '男性')">男性</button>
+          <button class="chip" :class="{ active: !filterGender || filterGender === '女性' }" @click="toggleFilter('gender', '女性')">女性</button>
         </div>
         <div class="chip-group">
-          <button class="chip" :class="{ active: filterCourse === '峠コース' }" @click="toggleFilter('course', '峠コース')">峠</button>
-          <button class="chip" :class="{ active: filterCourse === '関所・坂本宿コース' }" @click="toggleFilter('course', '関所・坂本宿コース')">関所</button>
+          <button class="chip" :class="{ active: !filterCourse || filterCourse === '峠コース' }" @click="toggleFilter('course', '峠コース')">峠</button>
+          <button class="chip" :class="{ active: !filterCourse || filterCourse === '関所・坂本宿コース' }" @click="toggleFilter('course', '関所・坂本宿コース')">関所</button>
         </div>
         <div class="chip-group">
-          <button class="chip" :class="{ active: filterCostume === '仮装する' }" @click="toggleFilter('costume', '仮装する')">仮装あり</button>
-          <button class="chip" :class="{ active: filterCostume === '仮装しない' }" @click="toggleFilter('costume', '仮装しない')">仮装なし</button>
+          <button class="chip" :class="{ active: !filterCostume || filterCostume === '仮装する' }" @click="toggleFilter('costume', '仮装する')">仮装あり</button>
+          <button class="chip" :class="{ active: !filterCostume || filterCostume === '仮装しない' }" @click="toggleFilter('costume', '仮装しない')">仮装なし</button>
         </div>
         <button class="chip chip-friend" :class="{ active: filterFriend }" @click="filterFriend = !filterFriend">★ 知り合い</button>
         <select v-model="filterPrefecture" class="pref-select">
