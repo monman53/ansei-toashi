@@ -7,27 +7,23 @@
         <button class="btn-secondary reset-btn" @click="resetFilters">クリア</button>
       </div>
       <div class="filter-row">
-        <select v-model="filterGender">
-          <option value="">全性別</option>
-          <option value="男性">男性</option>
-          <option value="女性">女性</option>
-        </select>
-        <select v-model="filterPrefecture">
-          <option value="">全都道府県</option>
+        <div class="chip-group">
+          <button class="chip" :class="{ active: filterGender === '男性' }" @click="toggleFilter('gender', '男性')">男性</button>
+          <button class="chip" :class="{ active: filterGender === '女性' }" @click="toggleFilter('gender', '女性')">女性</button>
+        </div>
+        <div class="chip-group">
+          <button class="chip" :class="{ active: filterCourse === '峠コース' }" @click="toggleFilter('course', '峠コース')">峠</button>
+          <button class="chip" :class="{ active: filterCourse === '関所・坂本宿コース' }" @click="toggleFilter('course', '関所・坂本宿コース')">関所</button>
+        </div>
+        <div class="chip-group">
+          <button class="chip" :class="{ active: filterCostume === '仮装する' }" @click="toggleFilter('costume', '仮装する')">仮装あり</button>
+          <button class="chip" :class="{ active: filterCostume === '仮装しない' }" @click="toggleFilter('costume', '仮装しない')">仮装なし</button>
+        </div>
+        <button class="chip chip-friend" :class="{ active: filterFriend }" @click="filterFriend = !filterFriend">★ 知り合い</button>
+        <select v-model="filterPrefecture" class="pref-select">
+          <option value="">都道府県</option>
           <option v-for="p in prefectures" :key="p">{{ p }}</option>
         </select>
-        <select v-model="filterCourse">
-          <option value="">全コース</option>
-          <option v-for="c in courses" :key="c">{{ c }}</option>
-        </select>
-        <select v-model="filterCostume">
-          <option value="">仮装あり/なし</option>
-          <option value="仮装する">仮装する</option>
-          <option value="仮装しない">仮装しない</option>
-        </select>
-        <button class="friend-filter-btn" :class="{ active: filterFriend }" @click="filterFriend = !filterFriend">
-          ★ 知り合いのみ
-        </button>
       </div>
       <div class="stats-row">
         <span class="stat-text">{{ participants.length }}件表示</span>
@@ -203,6 +199,12 @@ async function setSort(col) {
   sorting.value = false
 }
 
+function toggleFilter(type, val) {
+  if (type === 'gender')   filterGender.value  = filterGender.value  === val ? '' : val
+  if (type === 'course')   filterCourse.value  = filterCourse.value  === val ? '' : val
+  if (type === 'costume')  filterCostume.value = filterCostume.value === val ? '' : val
+}
+
 function resetFilters() {
   q.value = ''
   filterGender.value = ''
@@ -239,20 +241,33 @@ watch(() => props.yearMeta, (meta) => {
 .filter-row {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 6px;
   margin-bottom: 8px;
 }
-.filter-row select { flex: 1; min-width: 110px; }
 
-.friend-filter-btn {
-  padding: 7px 12px;
-  background: var(--border);
-  color: var(--muted);
+.chip-group {
+  display: flex;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  font-size: 13px;
+  overflow: hidden;
+}
+.chip-group .chip { border-radius: 0; border: none; border-right: 1px solid var(--border); }
+.chip-group .chip:last-child { border-right: none; }
+
+.chip {
+  padding: 5px 10px;
+  background: white;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 12px;
   white-space: nowrap;
 }
-.friend-filter-btn.active { background: var(--primary); color: white; }
+.chip.active { background: var(--primary); color: white; border-color: var(--primary); }
+.chip-friend { }
+
+.pref-select { width: auto; flex: 1; min-width: 90px; font-size: 12px; padding: 5px 8px; }
 
 .stats-row { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); }
 .friend-count { color: var(--friend-color); font-weight: 500; }
