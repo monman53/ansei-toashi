@@ -1,7 +1,7 @@
 <template>
   <span class="sort-icon">
     <template v-if="sort === field">
-      {{ order === 'asc' ? '▲' : '▼' }}
+      {{ order === 'asc' ? '↑' : '↓' }}
     </template>
     <template v-else>
       <span class="sort-idle">⇅</span>
