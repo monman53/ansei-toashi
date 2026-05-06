@@ -115,6 +115,7 @@ body {
   display: flex;
   align-items: center;
 }
+.github-link:visited { color: rgba(255,255,255,.7); }
 .github-link:hover { color: white; }
 
 .year-select {
