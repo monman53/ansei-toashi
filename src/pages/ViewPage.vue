@@ -3,7 +3,7 @@
     <!-- フィルター / 検索バー -->
     <div class="card filter-bar">
       <div class="search-row">
-        <input v-model="q" placeholder="氏名・よみがなで検索..." class="search-input" />
+        <input v-model="q" placeholder="氏名・フリガナで検索..." class="search-input" />
         <button class="btn-secondary reset-btn" @click="resetFilters">クリア</button>
       </div>
       <div class="filter-row">
@@ -29,7 +29,7 @@
         <span class="stat-text">{{ participants.length }}件表示</span>
         <span class="stat-text friend-count" v-if="friendCount > 0">★ {{ friendCount }}人</span>
         <span class="stat-text loading-inline" v-if="loading || sorting">{{ loading ? '読み込み中...' : 'ソート中...' }}</span>
-        <span class="stat-text notice">フリガナはAI生成のため誤りがある場合があります</span>
+        <span class="stat-text notice">非公式サイト。フリガナはAI生成のため誤りがある場合があります</span>
       </div>
     </div>
 
@@ -272,7 +272,7 @@ watch(() => props.yearMeta, (meta) => {
 .stats-row { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); }
 .friend-count { color: var(--friend-color); font-weight: 500; }
 .loading-inline { font-style: italic; }
-.notice { width: 100%; }
+.notice { margin-left: auto; }
 
 .table-loading { opacity: 0.4; pointer-events: none; transition: opacity 0.1s; }
 
